@@ -1,0 +1,13 @@
+services:
+  web_server:
+    build: ./web
+    container_name: robot_web
+    privileged: true  # Full hardware access
+    user: root  # Force container to run as root
+    ports:
+      - "83:80"
+      - "8787:8787"
+    volumes:
+      - ./web/html:/usr/local/apache2/htdocs
+      - ./web/cgi-bin:/usr/local/apache2/cgi-bin
+    restart: unless-stopped
