@@ -2,138 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Without this, mobile/responsive styling (like hiding the menu for smaller screens) won’t apply. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
     <title>Robot Control Center</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f0f2f5;
-            margin: 0;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        h1, h2 {
-            margin: 10px 0;
-        }
-
-        .panel {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-            width: 90%;
-            max-width: 900px;
-            text-align: center;
-        }
-
-.camera-wrapper img {
-    width: 100%;
-    border-radius: 10px;
-    max-height: none;          /* remove height restriction */
-    object-fit: contain;       /* show the full image without cropping */
-    display: block;
-}
-
-        .movement-controls {
-            display: grid;
-            grid-template-areas:
-                ". up ."
-                "left . right"
-                ". down .";
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .movement-controls {
-            display: grid;
-            grid-template-areas:
-                ". up ."
-                "left . right"
-                ". down ."
-                "rotate-left . rotate-right";
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .up { grid-area: up; }
-        .down { grid-area: down; }
-        .left { grid-area: left; }
-        .right { grid-area: right; }
-        .rotate-left { grid-area: rotate-left; }
-        .rotate-right { grid-area: rotate-right; }
-
-        .movement-controls button {
-            width: 100px;
-            height: 50px;
-            font-size: 16px;
-            background-color: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        .movement-controls button:hover {
-            background-color: #1976d2;
-        }
-
-        .led-controls button {
-            margin: 10px;
-            padding: 12px 25px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        #led-on {
-            background-color: #4CAF50;
-        }
-
-        #led-off {
-            background-color: #f44336;
-        }
-
-        #led-on:hover {
-            background-color: #388e3c;
-        }
-
-        #led-off:hover {
-            background-color: #d32f2f;
-        }
-
-        .response {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            min-height: 20px;
-        }
-
-        .success {
-            background: #dff0d8;
-            color: #3c763d;
-        }
-
-        .error {
-            background: #f2dede;
-            color: #a94442;
-        }
-
-        .loading {
-            color: #31708f;
-        }
-    </style>
 </head>
+
+
 <body>
 
     <h1>Robot Control Center</h1>
@@ -165,66 +44,7 @@
         <div id="response" class="response"></div>
     </div>
 
-    <script>
-    // WebSocket for robot movement
-    const socket = new WebSocket("ws://192.168.1.189:8787");
-    const responseDiv = document.getElementById("response");
-
-    socket.onopen = () => {
-        console.log("WebSocket connected");
-        responseDiv.className = "response success";
-        responseDiv.innerHTML = "✅ Connected to WebSocket";
-    };
-
-    socket.onerror = (error) => {
-        console.error("WebSocket error:", error);
-        responseDiv.className = "response error";
-        responseDiv.innerHTML = "❌ WebSocket connection error";
-    };
-
-    socket.onmessage = (event) => {
-        console.log("Server says:", event.data);
-        responseDiv.className = "response success";
-        responseDiv.innerHTML = `<strong>Server:</strong> ${event.data}`;
-    };
-
-    function sendCommand(direction) {
-        if (socket.readyState === WebSocket.OPEN) {
-            console.log(`Sending command: ${direction}`);
-            socket.send(direction);
-            responseDiv.className = "response loading";
-            responseDiv.innerHTML = `➡️ Command sent: <strong>${direction}</strong>`;
-        } else {
-            alert("WebSocket not connected!");
-            responseDiv.className = "response error";
-            responseDiv.innerHTML = "❌ WebSocket not connected!";
-        }
-    }
-
-    // Map keyboard to robot commands
-    document.addEventListener("keydown", function(event) {
-        switch(event.key) {
-            case "ArrowUp":
-                sendCommand("forward");
-                break;
-            case "ArrowDown":
-                sendCommand("backward");
-                break;
-            case "ArrowLeft":
-                sendCommand("left");
-                break;
-            case "ArrowRight":
-                sendCommand("right");
-                break;
-            case "a":
-                sendCommand("rotate_left");
-                break;
-            case "d":
-                sendCommand("rotate_right");
-                break;
-        }
-    });
-    </script>
+    <script src="main.js"></script>
 
 </body>
 </html>
