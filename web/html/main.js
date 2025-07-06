@@ -65,5 +65,6 @@ const nav1 = document.getElementById('navmenu1');
 
 toggleBtn1.addEventListener('click', () => {
 nav1.classList.toggle('hidden');
+toggleBtn1.classList.toggle("menu-open");
 });
 
