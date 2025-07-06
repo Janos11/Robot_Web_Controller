@@ -58,22 +58,12 @@ document.addEventListener("keydown", function(event) {
 });
 
 
-// Hamburger menu
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".menu");
 
-  toggle.addEventListener("click", () => {
-    menu.classList.toggle("active");
-  });
+// Navigation Menu v1
+const toggleBtn1 = document.getElementById('mobile-nav-toggle1');
+const nav1 = document.getElementById('navmenu1');
+
+toggleBtn1.addEventListener('click', () => {
+nav1.classList.toggle('hidden');
 });
 
-// Menu side bar
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleButton = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".menu");
-
-  toggleButton.addEventListener("click", () => {
-    menu.classList.toggle("show");
-  });
-});

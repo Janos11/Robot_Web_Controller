@@ -14,4 +14,12 @@ This project provides a web-based controller interface for a robot using Raspber
 git clone https://github.com/Janos11/Robot_Web_Controller.git
 cd Robot_Web_Controller
 docker-compose up
+```
 
+---
+<div style="font-family: Arial, sans-serif; line-height: 1.5;">
+  <strong>János Rostás & ChatGPT</strong><br>
+  👨‍💻 Electronic & Computer Engineer | 🛠️ Tinkerer with a Purpose | 🐳 Docker Enthusiast<br>
+  🌐 <a href="https://janosrostas.co.uk" target="_blank">janosrostas.co.uk</a>
+</div>
+  
