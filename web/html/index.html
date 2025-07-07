@@ -57,6 +57,29 @@
         <div id="response" class="response"></div>
       </div>
 
+
+      <!-- Chat Bot Container -->
+      <div id="plumber-chat" class="chat-container">
+        <div class="chat-header" onclick="toggleChat()">
+          💬 Chat with PlumberBot
+          <span id="toggle-btn">−</span>
+        </div>
+        <div id="chatbox" class="chat-box"></div>
+        <form id="chat-form">
+          <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+
+      <!-- Chat Launcher Button -->
+      <div id="chat-launcher" onclick="toggleChat()">
+        💬 Need Help?
+      </div>
+
+
+
+
+
       <!-- Go To Top Button Simple -->
       <!--
       <a href="#" class="go-top d-flex align-items-center justify-content-center">
@@ -77,5 +100,7 @@
   </div>
 
   <script src="main.js"></script>
+  <script src="chatbot.js"></script>
+
 </body>
 </html>
