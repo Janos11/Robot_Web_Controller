@@ -181,20 +181,28 @@ h2 {
 
 /* Navigation Menu Styles */
 #mobile-nav-toggle1 {
-  color: black; /* default color */
+  color: #2c3e50;
   transition: color 0.3s;
   position: absolute;
   top: 20px;
   left: 20px;
-  font-size: 2.5rem;
+  font-size: 3rem;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 999;
 }
 
+#mobile-nav-toggle1:hover {
+  transform: scale(1.2);
+}
+
 #mobile-nav-toggle1.menu-open {
   color: white; /* when menu is opened */
+}
+
+#mobile-nav-toggle1.menu-open:hover {
+  color: #3498db;
 }
 
 .navmenu1 {
@@ -254,6 +262,8 @@ h2 {
   #mobile-nav-toggle1 {
     align-self: flex-start;
   }
+
+
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -262,7 +272,7 @@ h2 {
 /* (Enhanced) */
 .go-top {
   position: fixed;
-  right: 15px;
+  right: 20px;
   bottom: -20px;
   opacity: 0;
   visibility: hidden;

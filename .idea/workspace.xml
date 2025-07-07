@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9721e025-66cb-4d9a-94de-7337a5ce0ef4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web/html/send_email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/html/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/html/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/html/chatbot.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/html/chatbot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/html/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/html/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

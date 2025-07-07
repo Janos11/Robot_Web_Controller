@@ -4,32 +4,88 @@ const input = document.getElementById("chat-input");
 const chatContainer = document.getElementById("plumber-chat");
 const chatLauncher = document.getElementById("chat-launcher");
 
+// State Variables
 let stage = 0;
+let userData = {
+  name: "",
+  issue: "",
+  phone: "",
+  email: "",
+  postcode: "",
+};
+
 
 // Response logic
 const responses = {
   greetings: [
     "Hi there! 👋 I'm PlumberBot, your virtual assistant.",
-    "Hello! How can I help you today?",
-    "Good to see you! Having any plumbing issues?"
+    "Hello! Need a plumber today?",
+    "Good to see you! I’m here to help with any plumbing issues.",
   ],
   askIssue: [
-    "Can you tell me a bit more? Is it a leak, blockage, installation or something else?",
-    "Is the issue in the kitchen, bathroom, or somewhere else?",
-    "Thanks for reaching out. What kind of plumbing work do you need help with?"
+    "Could you describe the problem? Leak, blockage, no hot water, installation or something else?",
+    "Where’s the issue – kitchen, bathroom, or outdoors?",
+    "Let me know what’s going wrong so I can match you with the right plumber.",
   ],
   buildTrust: [
-    "We’ve helped over 200 customers in your area. You're in safe hands! 🔧",
-    "Don’t worry, our certified plumbers can handle it professionally and quickly.",
-    "It’s good that you reached out now – plumbing issues only get worse when ignored!"
+    "You're in good hands. We've served hundreds in your area. 🛠️",
+    "Our team is fully certified and usually available same-day. 🚚",
+    "No worries, we’ll handle it quickly and professionally.",
   ],
   leadPrompt: [
-    "If you'd like a callback or want to book a visit, just leave your name, number, and postcode.",
-    "You can also message us on WhatsApp 📱 at <strong>+44 7700 900000</strong>, or email <strong>plumber@example.com</strong>.",
-    "Prefer SMS or email? We're flexible! Just let us know the best way to contact you."
-  ]
+    "Can you please share your name so we can log your request?",
+    "First, what's your full name?",
+  ],
+  askPhone: [
+    "Got it! Could you also share your phone number?",
+    "Perfect. What’s the best number to reach you on?",
+  ],
+  askEmail: [
+    "Thanks. Do you have an email we can use for the quote confirmation?",
+    "Almost there. Could you enter your email address too?",
+  ],
+  askPostcode: [
+    "Just one last thing — what’s your postcode so we can check local availability?",
+    "Finally, can you let us know your postcode?",
+  ],
+  confirmation: [
+    "Thanks! Here’s what we got:",
+    () => `
+      <ul>
+        <li><strong>Name:</strong> ${userData.name}</li>
+        <li><strong>Phone:</strong> ${userData.phone}</li>
+        <li><strong>Email:</strong> ${userData.email}</li>
+        <li><strong>Postcode:</strong> ${userData.postcode}</li>
+        <li><strong>Issue:</strong> ${userData.issue}</li>
+      </ul>
+      We’ll be in touch shortly. ✅
+    `,
+  ],
+  fallback: [
+    "Hmm, I didn’t quite get that. Can you rephrase it?",
+    "Sorry, could you say that again in a different way?",
+  ],
+  ending: [
+    "Is there anything else I can help with today? 😊",
+    "Need anything else while I’m here?",
+  ],
+  goodbye: [
+    "Take care! If you need us again, just send a message.",
+    "Goodbye for now! 👋 Stay safe and dry!",
+  ],
 };
 
+// Helper
+//function randomItem(arr) {
+//  return typeof arr[0] === "function" ? arr[0]() : arr[Math.floor(Math.random() * arr.length)];
+//}
+function randomItem(arr) {
+  const item = arr[Math.floor(Math.random() * arr.length)];
+  return typeof item === "function" ? item() : item;
+}
+
+
+// Add message to chat
 function addMessage(msg, sender = "bot") {
   const div = document.createElement("div");
   div.className = sender;
@@ -38,33 +94,110 @@ function addMessage(msg, sender = "bot") {
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
+// Main bot logic
 function botResponse(userMsg) {
   const text = userMsg.toLowerCase();
 
   if (stage === 0) {
-    if (/hi|hello|good\s?(morning|afternoon|evening)|how are you/.test(text)) {
+    if (/hi|hello|hey|good (morning|afternoon|evening)/.test(text)) {
       addMessage(randomItem(responses.greetings));
       stage = 1;
       setTimeout(() => addMessage(randomItem(responses.askIssue)), 2000);
     } else {
-      addMessage("Hey! 👋 Just say 'hi' to get started.");
+      addMessage("👋 Just say hi to begin.");
     }
+
   } else if (stage === 1) {
-    addMessage(randomItem(responses.buildTrust));
-    stage = 2;
-    setTimeout(() => addMessage(randomItem(responses.leadPrompt)), 2000);
-  } else if (stage === 2) {
-    if (/(\d{10,11})|@/.test(text)) {
-      addMessage("Thanks! We'll get in touch shortly. ✅");
-      stage = 3;
+    const keywords = new RegExp(
+      [
+        'leak', 'leaking', 'drip', 'blocked', 'clogged',
+        'toilet', 'bath', 'shower', 'installation', 'pipe',
+        'boiler', 'radiator', 'burst', 'sink', 'no hot water',
+        'flood', 'flooded', 'washing machine', 'dishwasher',
+        'tap', 'faucet', 'overflow', 'sewage', 'backflow',
+        'water heater', 'tank', 'stopcock', 'pressure', 'valve',
+        'outdoor tap', 'wet wall', 'damp', 'pipe burst'
+      ].join('|'),
+      'i'
+    );
+    //const keywords = /(leak|leaking|drip|blocked|clogged|toilet|bath|shower|installation|pipe|boiler|radiator|burst|sink|no hot water)/;
+    if (keywords.test(text)) {
+      userData.issue = userMsg;
+      addMessage(randomItem(responses.buildTrust));
+      stage = 2;
+      setTimeout(() => addMessage(randomItem(responses.leadPrompt)), 2000);
     } else {
-      addMessage("Can you please share your name and best contact method? 📞");
+      addMessage(randomItem(responses.fallback));
     }
+
+  } else if (stage === 2) {
+    if (userMsg.length > 2) {
+      userData.name = userMsg;
+      stage = 3;
+      addMessage(randomItem(responses.askPhone));
+    } else {
+      addMessage("Can you please type your full name?");
+    }
+
   } else if (stage === 3) {
-    addMessage("Is there anything else I can help you with?");
+    const phoneMatch = userMsg.match(/\+?\d{10,15}/);
+    if (phoneMatch) {
+      userData.phone = phoneMatch[0];
+      stage = 4;
+      addMessage(randomItem(responses.askEmail));
+    } else if (/no|don’t have|don’t have|dont have one|do not have|none/i.test(userMsg)) {
+      userData.phone = "Not provided";
+      stage = 4;
+      addMessage("No problem! We’ll use email to get in touch.");
+      setTimeout(() => addMessage(randomItem(responses.askEmail)), 2000);
+    } else {
+      addMessage("Hmm, that doesn't look like a valid phone number.");
+    }
+
+  } else if (stage === 4) {
+    const emailMatch = userMsg.match(/[\w.-]+@[\w.-]+\.\w+/);
+    if (emailMatch) {
+      userData.email = emailMatch[0];
+      stage = 5;
+      addMessage(randomItem(responses.askPostcode));
+    } else if (/no|don’t have|dont have|do not have|none/i.test(userMsg)) {
+      userData.email = "Not provided";
+      stage = 5;
+      addMessage("No problem! We’ll contact you by phone instead.");
+      setTimeout(() => addMessage(randomItem(responses.askPostcode)), 1500);
+    } else {
+      addMessage("Can you check that email? It doesn't look valid.");
+    }
+
+  } else if (stage === 5) {
+    if (/^[a-z]{1,2}\d[a-z\d]?\s?\d[a-z]{2}$/i.test(userMsg)) {
+      userData.postcode = userMsg.toUpperCase();
+      stage = 6;
+      addMessage(randomItem(responses.confirmation));
+      setTimeout(() => addMessage(randomItem(responses.ending)), 3000);
+    } else if (/no|don’t have|don’t have|do not have|none/i.test(userMsg)) {
+      userData.postcode = "Not provided";
+      stage = 6;
+      addMessage("That’s okay! We’ll get in touch and sort things out together. ✅");
+      setTimeout(() => addMessage(randomItem(responses.confirmation)), 2000);
+      setTimeout(() => addMessage(randomItem(responses.ending)), 5000);
+    } else {
+      addMessage("That doesn't look like a UK postcode. Can you double-check?");
+    }
+
+  } else if (stage === 6) {
+    if (/no|nothing|okay|ok|alright|thanks|thank you|see you|have a nice|bye|exit/i.test(text)) {
+      addMessage(randomItem(responses.goodbye));
+      stage = 7;
+    } else if (/when|who|call|coming|come|fix|available|time|contact/i.test(text)) {
+      addMessage("One of our plumbers will contact you shortly to confirm the details and arrange a time that works best for you. 🛠️");
+    } else {
+      addMessage("I can also help with boiler service, emergency leaks, or new installations.");
+    }
   }
 }
 
+// Submit text
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const userText = input.value.trim();
@@ -75,10 +208,7 @@ form.addEventListener("submit", function (e) {
   setTimeout(() => botResponse(userText), 1000);
 });
 
-function randomItem(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
 // Chat show/hide toggle
 function toggleChat() {
     const isOpen = chatContainer.classList.contains('visible');
