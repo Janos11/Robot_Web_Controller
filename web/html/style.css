@@ -422,8 +422,11 @@ h2 {
 }
 
 #chat-input {
-  flex: 1;
-  padding: 8px;
+  font-size: 16px;  /* Minimum to prevent iPhone zoom */
+  padding: 10px;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #chat-form button {
