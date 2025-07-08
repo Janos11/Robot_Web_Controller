@@ -12,8 +12,8 @@ let userData = {
   phone: "",
   email: "",
   postcode: "",
+  timestamp: "",
 };
-
 
 // Response logic
 const responses = {
@@ -49,14 +49,15 @@ const responses = {
     "Finally, can you let us know your postcode?",
   ],
   confirmation: [
-    "Thanks! Here’s what we got:",
     () => `
+      Thanks! Here’s what we got:
       <ul>
         <li><strong>Name:</strong> ${userData.name}</li>
         <li><strong>Phone:</strong> ${userData.phone}</li>
         <li><strong>Email:</strong> ${userData.email}</li>
         <li><strong>Postcode:</strong> ${userData.postcode}</li>
         <li><strong>Issue:</strong> ${userData.issue}</li>
+        <li><strong>Time:</strong> ${userData.timestamp}</li>
       </ul>
       We’ll be in touch shortly. ✅
     `,
@@ -84,7 +85,6 @@ function randomItem(arr) {
   return typeof item === "function" ? item() : item;
 }
 
-
 // Add message to chat
 function addMessage(msg, sender = "bot") {
   const div = document.createElement("div");
@@ -99,6 +99,7 @@ function botResponse(userMsg) {
   const text = userMsg.toLowerCase();
 
   if (stage === 0) {
+    userData.timestamp = new Date().toLocaleString();  // Logs current date & time
     if (/hi|hello|hey|good (morning|afternoon|evening)/.test(text)) {
       addMessage(randomItem(responses.greetings));
       stage = 1;
@@ -112,7 +113,7 @@ function botResponse(userMsg) {
       [
         'leak', 'leaking', 'drip', 'blocked', 'clogged',
         'toilet', 'bath', 'shower', 'installation', 'pipe',
-        'boiler', 'radiator', 'burst', 'sink', 'no hot water',
+        'boiler', 'radiator', 'burst', 'sink', 'water', 'no hot water',
         'flood', 'flooded', 'washing machine', 'dishwasher',
         'tap', 'faucet', 'overflow', 'sewage', 'backflow',
         'water heater', 'tank', 'stopcock', 'pressure', 'valve',
@@ -120,7 +121,6 @@ function botResponse(userMsg) {
       ].join('|'),
       'i'
     );
-    //const keywords = /(leak|leaking|drip|blocked|clogged|toilet|bath|shower|installation|pipe|boiler|radiator|burst|sink|no hot water)/;
     if (keywords.test(text)) {
       userData.issue = userMsg;
       addMessage(randomItem(responses.buildTrust));
@@ -145,7 +145,7 @@ function botResponse(userMsg) {
       userData.phone = phoneMatch[0];
       stage = 4;
       addMessage(randomItem(responses.askEmail));
-    } else if (/no|don’t have|don’t have|dont have one|do not have|none/i.test(userMsg)) {
+    } else if (/no|don’t have|don’t have|dont have one|do not have|none/i.test(text)) {
       userData.phone = "Not provided";
       stage = 4;
       addMessage("No problem! We’ll use email to get in touch.");
@@ -160,7 +160,7 @@ function botResponse(userMsg) {
       userData.email = emailMatch[0];
       stage = 5;
       addMessage(randomItem(responses.askPostcode));
-    } else if (/no|don’t have|dont have|do not have|none/i.test(userMsg)) {
+    } else if (/no|don’t have|dont have|do not have|none/i.test(text)) {
       userData.email = "Not provided";
       stage = 5;
       addMessage("No problem! We’ll contact you by phone instead.");
@@ -170,12 +170,12 @@ function botResponse(userMsg) {
     }
 
   } else if (stage === 5) {
-    if (/^[a-z]{1,2}\d[a-z\d]?\s?\d[a-z]{2}$/i.test(userMsg)) {
+    if (/^[a-z]{1,2}\d[a-z\d]?\s?\d[a-z]{2}$/i.test(text)) {
       userData.postcode = userMsg.toUpperCase();
       stage = 6;
       addMessage(randomItem(responses.confirmation));
       setTimeout(() => addMessage(randomItem(responses.ending)), 3000);
-    } else if (/no|don’t have|don’t have|do not have|none/i.test(userMsg)) {
+    } else if (/no|don’t have|don’t have|do not have|none/i.test(text)) {
       userData.postcode = "Not provided";
       stage = 6;
       addMessage("That’s okay! We’ll get in touch and sort things out together. ✅");
@@ -186,6 +186,7 @@ function botResponse(userMsg) {
     }
 
   } else if (stage === 6) {
+    sendLeadToServer();
     if (/no|nothing|okay|ok|alright|thanks|thank you|see you|have a nice|bye|exit/i.test(text)) {
       addMessage(randomItem(responses.goodbye));
       stage = 7;
@@ -235,4 +236,16 @@ function toggleChat() {
         }, 1000);
       }
     }
+}
+
+// Save Lead with customer info
+function sendLeadToServer() {
+  fetch('/send-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userData)
+  })
+  .then(res => res.text())
+  .then(msg => console.log(msg))
+  .catch(err => console.error("Error sending lead:", err));
 }
