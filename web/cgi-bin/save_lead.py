@@ -8,9 +8,7 @@ import os
 app = Flask(__name__)
 
 # Path to your log file
-# LOG_FILE = "/home/pi/plumberbot/leads.jsonl" # does not exist in docker container
-LOG_FILE = "/usr/local/apache2/logs/leads.jsonl"
-
+LOG_FILE = "/usr/local/apache2/htdocs/leads.jsonl" # attached to container
 
 @app.route('/send-lead', methods=['POST'])
 def send_lead():

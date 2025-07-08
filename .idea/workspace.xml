@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9721e025-66cb-4d9a-94de-7337a5ce0ef4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/httpd.conf" beforeDir="false" afterPath="$PROJECT_DIR$/httpd.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Robot_Web_Controller.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_Web_Controller.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/cgi-bin/save_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/cgi-bin/save_lead.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/supervisord.conf" beforeDir="false" afterPath="$PROJECT_DIR$/web/supervisord.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
