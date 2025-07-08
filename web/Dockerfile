@@ -27,6 +27,9 @@ RUN python3 -m venv /opt/venv
 # Install Python packages
 RUN /opt/venv/bin/pip install websockets RPi.GPIO
 
+# Install Flask and requests for save_leads.py
+RUN /opt/venv/bin/pip install flask requests
+
 # Copy the supervisor config
 COPY supervisord.conf /etc/supervisord.conf
 

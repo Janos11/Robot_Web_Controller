@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Log In page
+// Log In modern page
 const loginTab = document.getElementById("loginTab");
 const registerTab = document.getElementById("registerTab");
 const loginForm = document.getElementById("loginForm");
