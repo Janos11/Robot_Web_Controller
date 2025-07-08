@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9721e025-66cb-4d9a-94de-7337a5ce0ef4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/web/supervisord.conf" beforeDir="false" afterPath="$PROJECT_DIR$/web/supervisord.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/cgi-bin/save_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/cgi-bin/save_lead.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
