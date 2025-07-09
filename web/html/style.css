@@ -59,12 +59,26 @@ h2 {
 }
 
 /* Camera */
-.camera-wrapper img {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: contain;
-  display: block;
+.camera-wrapper {
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);  /* gentle shadow */
+  margin: 30px auto;         /* vertical spacing, centered horizontally */
+  max-width: 700px;          /* keep the whole container from getting too wide */
 }
+
+.camera-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* keeps correct 16:9 ratio */
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: block;
+  overflow: hidden;   /* hide scrollbars */
+  max-height: 100%;   /* don't let iframe exceed container height */
+}
+
 
 /* Movement Controls */
 @media (max-width: 768px) {
