@@ -53,10 +53,25 @@ docker compose up
 
 ---
 ## 🤝 Contributors
-<div style="font-family: Arial, sans-serif; line-height: 1.5;">
-  <strong>János Rostás & ChatGPT</strong><br>
-  👨‍💻 Electronic & Computer Engineer | 🛠️ Tinkerer with a Purpose | 🐳 Docker Enthusiast<br>
-  🌐 <a href="https://janosrostas.co.uk" target="_blank">janosrostas.co.uk</a>
-  | <a href="https://www.linkedin.com/in/janos-rostas/" target="_blank">LinkedIn</a>
-</div>
+
+<table style="font-family: Arial, sans-serif; line-height: 1.6;">
+  <tr>
+    <td><strong>János Rostás</strong></td>
+    <td>
+      👨‍💻 Electronic & Computer Engineer<br>
+      🛠️ Tinkerer with a Purpose<br>
+      🐳 Docker Enthusiast<br>
+      🌐 <a href="https://janosrostas.co.uk" target="_blank">janosrostas.co.uk</a><br>
+      🔗 <a href="https://www.linkedin.com/in/janos-rostas/" target="_blank">LinkedIn</a>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>ChatGPT</strong></td>
+    <td>
+      🤖 AI Pair Programmer by OpenAI<br>
+      💡 Supports brainstorming, prototyping, and debugging<br>
+      📚 Backed by years of programming knowledge and best practices
+    </td>
+  </tr>
+</table>
   
