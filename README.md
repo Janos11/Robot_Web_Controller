@@ -2,6 +2,7 @@
 
 This project provides a web-based controller interface for a robot using Raspberry Pi, Docker, and Apache. It includes CGI scripts for GPIO control and a live camera feed.<br/>
 📓 [View the development notebook](./Robot_Web_Controller.ipynb)
+🎥 [Set up MotionEye in Docker on Raspberry Pi](./MotionEye_in_Docker_(Raspberry_Pi).ipynb)
 
 ## Features
 - LED on/off with WebSocket
