@@ -358,6 +358,8 @@ h2 {
   box-shadow: 10px 10px 30px #c2c8d0, -10px -10px 30px #ffffff;
   width: 300px;
   margin-top: 100px;
+  /* Center horizontally and vertically */
+  margin: 100px auto 0 auto;
 }
 
 .tabs {
@@ -515,6 +517,12 @@ input {
   width: 100%;
 }
 
+.info-box:hover {
+  background: #f3f4f6;
+  transform: scale(1.2); /* Grows on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Optional: slightly stronger shadow on hover */
+}
+
 .info-box i {
   font-size: 24px;
   color: #007bff;
@@ -579,3 +587,53 @@ input {
     height: 300px; /* Slightly taller for mobile usability */
   }
 }
+
+.fade-in-10 {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.fade-in-15 {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.fade-in-20 {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+.fade-in-25 {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 2.5s ease-out forwards;
+}
+
+.fade-in-r {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: fadeInRight 2.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*
+Light Gray	#e0e0e0
+Cool Gray	#d6d6d6
+Medium Gray	#cccccc
+*/
