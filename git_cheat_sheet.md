@@ -32,6 +32,7 @@ Your quick reference to essential Git commands while developing!
 | `git status` | See modified/added files |
 | `git add <file>` | Stage a specific file |
 | `git add .` | Stage all changes |
+| `git reset HEAD <file>` | Unstage a file (keep changes) |
 | `git commit -m "message"` | Commit staged changes with a message |
 | `git rm <file>` | Remove a tracked file |
 | `git restore <file>` | Discard changes to a file |
