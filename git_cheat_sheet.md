@@ -47,8 +47,8 @@ Your quick reference to essential Git commands while developing!
 |--------|---------------------------------------|
 | `git remote add origin <url>` | Link local repo to remote             |
 | `git push -u origin master` | Push first time with upstream tracking |
+| `git push -u origin main` | Push first time with upstream tracking (for main branch) |
 | `git remote -v` | Check remote                          |
-| `git push -u origin main` | Push first time with upstream tracking (for main branch)                          |
 | `git push` | Push changes to remote                |
 | `git pull` | Pull latest changes from remote       |
 | `git fetch` | Fetch changes without merging         |
@@ -93,10 +93,10 @@ This sets the upstream so you can just run git push or git pull without specifyi
 
 ## 📎 Extras
 
-| Tip | Command |
-|-----|---------|
-| View `.gitignore`-d files | `git ls-files --others --ignored --exclude-standard` |
-| See changes visually | `git diff` |
+| Tip                             | Command |
+|---------------------------------|---------|
+| View `.gitignore -d` files       | `git ls-files --others --ignored --exclude-standard` |
+| See changes visually            | `git diff` |
 | Undo last commit (keep changes) | `git reset --soft HEAD~1` |
 
 ---
