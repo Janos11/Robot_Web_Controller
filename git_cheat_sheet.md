@@ -43,16 +43,16 @@ Your quick reference to essential Git commands while developing!
 
 ## 🔄 Working with Remotes
 
-| Command                            | Description                           |
-|------------------------------------|---------------------------------------|
-| `git remote add origin <url>`      | Link local repo to remote             |
-| `git push -u origin master`        | Push first time with upstream tracking |
+| Command                            | Description                                              |
+|------------------------------------|----------------------------------------------------------|
+| `git remote add origin <url>`      | Link local repo to remote                                |
+| `git push -u origin master`        | Push first time with upstream tracking                   |
 | `git push -u origin main`          | Push first time with upstream tracking (for main branch) |
-| `git remote -v`                    | Check remote                          |
-| `git push`                         | Push changes to remote                |
-| `git pull`                         | Pull latest changes from remote       |
-| `git pull origin <another_branch>` | Pull latest changes from remote       |
-| `git fetch`                        | Fetch changes without merging         |
+| `git remote -v`                    | Check remote                                             |
+| `git push`                         | Push changes to remote                                   |
+| `git pull`                         | Pull latest changes from remote                          |
+| `git pull origin <another_branch>` | Pull changes from a specific branch on the remote without switching to it  |
+| `git fetch`                        | Fetch changes without merging                            |
 
 📝 Use `git push -u origin main` if your default branch is main (GitHub default since Oct 2020).<br/>
 This sets the upstream so you can just run git push or git pull without specifying the branch.
