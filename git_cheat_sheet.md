@@ -80,8 +80,12 @@ This sets the upstream so you can just run git push or git pull without specifyi
 |--------|-------------|
 | `git push origin --delete <branch>` | ❌ Delete a branch on remote (e.g., GitHub) |
 | `git push -u origin <new_branch>` | ✅ Push and track a renamed or new branch |
-| `git branch -vv` | Check if local branch is correctly tracking remote |
-| `git branch -m <old> <new>` | Rename your local branch before pushing again |
+| `git branch --set-upstream-to=origin/<remote_branch> <local_branch>` | 🔄 Set upstream remote for an existing local branch |
+| `git branch -vv` | 🔍 Check if local branch is correctly tracking remote |
+| `git branch -m <old> <new>` | ✏️ Rename your local branch before pushing again |
+
+
+
 ---
 
 ## 🧹 Cleaning Up
