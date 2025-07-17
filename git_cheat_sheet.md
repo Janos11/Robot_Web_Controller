@@ -66,9 +66,12 @@ This sets the upstream so you can just run git push or git pull without specifyi
 | `git branch` | List local branches |
 | `git branch <name>` | Create a new branch |
 | `git checkout <name>` | Switch to a branch |
+| `git branch -m <old> <new>` | Rename a local branch |
 | `git checkout -b <name>` | Create and switch to new branch |
 | `git merge <branch>` | Merge another branch into current one |
 | `git branch -d <name>` | Delete a branch |
+
+
 
 ---
 
