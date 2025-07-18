@@ -117,5 +117,14 @@ This sets the upstream so you can just run git push or git pull without specifyi
 
 ---
 
+## 📚 Useful Git Resources
+
+| Resource                 | Link                                                                                                                     | Description                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+| Official Git Book        | [https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)                                                         | Comprehensive and free      |
+| Git Cheatsheet           | [https://education.github.com/git-cheat-sheet-education.pdf](https://education.github.com/git-cheat-sheet-education.pdf) | Handy commands reference    |
+| Interactive Rebase Guide | [https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) | Deep dive into rebasing     |
+| Atlassian Git Tutorials  | [https://www.atlassian.com/git/tutorials](https://www.atlassian.com/git/tutorials)                                       | Clear, beginner-to-advanced |
+
 Happy coding 🚀
 
