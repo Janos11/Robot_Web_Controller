@@ -10,6 +10,7 @@ Your quick reference to essential Git commands while developing!
 |--------|-------------|
 | `git config --global user.name "Your Name"` | Set your Git username |
 | `git config --global user.email "you@example.com"` | Set your Git email |
+| `git config --global credential.helper store git push` |  Store GitHub password locally so you don’t enter it every time |
 | `git config --list` | Check Git configuration |
 | `git --version` | Show Git version |
 
@@ -53,6 +54,7 @@ Your quick reference to essential Git commands while developing!
 | `git pull`                         | Pull latest changes from remote                          |
 | `git pull origin <another_branch>` | Pull changes from a specific branch on the remote without switching to it  |
 | `git fetch`                        | Fetch changes without merging                            |
+
 
 📝 Use `git push -u origin main` if your default branch is main (GitHub default since Oct 2020).<br/>
 This sets the upstream so you can just run git push or git pull without specifying the branch.
