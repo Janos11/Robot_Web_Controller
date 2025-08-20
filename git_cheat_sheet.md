@@ -10,7 +10,7 @@ Your quick reference to essential Git commands while developing!
 |--------|-------------|
 | `git config --global user.name "Your Name"` | Set your Git username |
 | `git config --global user.email "you@example.com"` | Set your Git email |
-| `git config --global credential.helper store git push` |  Store GitHub password locally so you don’t enter it every time |
+| `git config --global credential.helper store` |  Store GitHub password locally so you don’t enter it every time |
 | `git config --list` | Check Git configuration |
 | `git --version` | Show Git version |
 
